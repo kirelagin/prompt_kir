@@ -9,6 +9,7 @@ local prompt_branch="|"
 local prompt_arrow_start="\`"
 local prompt_arrow_user=">"
 local prompt_arrow_root="%F{white}%K{$prompt_root_red}#%k%f"
+local prompt_dots="..."
 
 prompt_enable_utf8() {
   prompt_head_start="┌"
@@ -16,6 +17,7 @@ prompt_enable_utf8() {
   prompt_branch="├"
   prompt_arrow_start="└"
   prompt_arrow_user="›"
+  prompt_dots="…"
 }
 
 
@@ -63,7 +65,7 @@ prompt_ps1_line1() {
   # Truncate left part:
   # .-(...ar/path)-
   left_width=$(( COLUMNS - (2 + 2 + 1) ))
-  left="%F{$prompt_line_fg}${prompt_head_start}${prompt_line}%f(%B%F{$prompt_distro_fg}%$left_width<...<${left_raw}%<<%f%b)"
+  left="%F{$prompt_line_fg}${prompt_head_start}${prompt_line}%f(%B%F{$prompt_distro_fg}%$left_width<${prompt_dots}<${left_raw}%<<%f%b)"
   echo "${left}%F{${prompt_line_fg}}${prompt_line}%f"
 }
 
