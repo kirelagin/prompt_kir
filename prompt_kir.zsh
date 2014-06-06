@@ -1,6 +1,6 @@
-local prompt_left_fg=${DISTRO_COLOUR:-green}
+local prompt_distro_fg=${DISTRO_COLOUR:-green}
 local prompt_line_fg=15
-local prompt_right_fg=${HOST_COLOUR:-cyan}
+local prompt_host_fg=${HOST_COLOUR:-cyan}
 local prompt_root_red=196
 
 local prompt_head_start="."
@@ -32,12 +32,12 @@ prompt_branch_prev_line() {
 prompt_ps1_line1() {
   local left_raw="%~"
   local left_width=${#${(S%%)left_raw//(\%([KF1]|)\{*\}|\%[Bbkf])}}
-  local left="%F{$prompt_line_fg}${prompt_head_start}${prompt_line}%f(%B%F{$prompt_left_fg}${left_raw}%f%b)"
+  local left="%F{$prompt_line_fg}${prompt_head_start}${prompt_line}%f(%B%F{$prompt_distro_fg}${left_raw}%f%b)"
 
   local right_raw="%n@%B%m%b"
   local right_width=${#${(S%%)right_raw//(\%([KF1]|)\{*\}|\%[Bbkf])}}
   right_raw="%(!.%K{$prompt_root_red}.)%n%(!.%K.)@%B%m%b"  # kinda cheating here
-  local right="(%F{$prompt_right_fg}${right_raw}%f)%F{$prompt_line_fg}${prompt_line}%f"
+  local right="(%F{$prompt_host_fg}${right_raw}%f)%F{$prompt_line_fg}${prompt_line}%f"
 
 
   # Try to fit both parts:
@@ -63,20 +63,20 @@ prompt_ps1_line1() {
   # Truncate left part:
   # .-(...ar/path)-
   left_width=$(( COLUMNS - (2 + 2 + 1) ))
-  left="%F{$prompt_line_fg}${prompt_head_start}${prompt_line}%f(%B%F{$prompt_left_fg}%$left_width<...<${left_raw}%<<%f%b)"
+  left="%F{$prompt_line_fg}${prompt_head_start}${prompt_line}%f(%B%F{$prompt_distro_fg}%$left_width<...<${left_raw}%<<%f%b)"
   echo "${left}%F{${prompt_line_fg}}${prompt_line}%f"
 }
 
 prompt_ps1_line2() {
-  echo "$(prompt_start_input_line)%F{$prompt_left_fg}%B%(!.${prompt_arrow_root}.${prompt_arrow_user})%b%f "
+  echo "$(prompt_start_input_line)%F{$prompt_distro_fg}%B%(!.${prompt_arrow_root}.${prompt_arrow_user})%b%f "
 }
 
 prompt_ps2() {
-  echo "$(prompt_branch_prev_line)$(prompt_start_input_line)%F{$prompt_left_fg}%B%_${prompt_arrow_user}%b%f "
+  echo "$(prompt_branch_prev_line)$(prompt_start_input_line)%F{$prompt_distro_fg}%B%_${prompt_arrow_user}%b%f "
 }
 
 prompt_ps3() {
-  echo "$(prompt_branch_prev_line)$(prompt_start_input_line)%F{$prompt_left_fg}%B?#%b%f "
+  echo "$(prompt_branch_prev_line)$(prompt_start_input_line)%F{$prompt_distro_fg}%B?#%b%f "
 }
 
 
