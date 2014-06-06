@@ -68,7 +68,7 @@ prompt_ps1_line1() {
 }
 
 prompt_ps1_line2() {
-  echo "$(prompt_start_input_line)%F{$prompt_distro_fg}%B%(!.${prompt_arrow_root}.${prompt_arrow_user})%b%f "
+  echo "$(prompt_start_input_line)%F{$prompt_host_fg}%B%(!.${prompt_arrow_root}.${prompt_arrow_user})%b%f "
 }
 
 prompt_ps2() {
