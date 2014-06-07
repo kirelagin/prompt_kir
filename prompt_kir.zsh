@@ -1,7 +1,7 @@
 local prompt_distro_fg=${DISTRO_COLOUR:-green}
-local prompt_line_fg=15
 local prompt_host_fg=${HOST_COLOUR:-cyan}
 local prompt_root_red=196
+local prompt_line_fg="%(!.$prompt_root_red.15)"
 
 local prompt_head_start="."
 local prompt_line="-"
