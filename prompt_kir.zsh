@@ -37,6 +37,11 @@ prompt_subst_width() {
   echo ${#${(S%%)1}}
 }
 
+prompt_replicate() {
+    local char="$1" size="$2"
+    eval "echo \${(l:${size}::${char}:)}"
+}
+
 
 prompt_ps1_line1() {
   local left_raw="%~"
@@ -53,8 +58,7 @@ prompt_ps1_line1() {
   # .-(~/bar/path)----------------(user@host)-
   local padding_size=$(( COLUMNS - left_width - right_width - (2 + 2 + 2 + 1) ))
   if (( padding_size > 0 )); then
-    local padding
-    eval "padding=\${(l:${padding_size}::${prompt_line}:)_empty_zz}"
+    local padding=$(prompt_replicate "$prompt_line" "$padding_size")
     echo "${left}%F{$prompt_line_fg}${padding}%f${right}"
     return
   fi
@@ -63,8 +67,7 @@ prompt_ps1_line1() {
   # .-(~/bar/path)-------------
   padding_size=$(( COLUMNS - left_width - (2 + 2 + 1) ))
   if (( padding_size > 0 )); then
-    local padding
-    eval "padding=\${(l:${padding_size}::${prompt_line}:)_empty_zz}"
+    local padding=$(prompt_replicate "$prompt_line" "$padding_size")
     echo "${left}%F{$prompt_line_fg}${padding}%f"
     return
   fi
