@@ -33,13 +33,18 @@ prompt_branch_prev_line() {
 }
 
 
+prompt_subst_width() {
+  echo ${#${(S%%)1}}
+}
+
+
 prompt_ps1_line1() {
   local left_raw="%~"
-  local left_width=${#${(S%%)left_raw//(\%([KF1]|)\{*\}|\%[Bbkf])}}
+  local left_width=$(prompt_subst_width "$left_raw")
   local left="%F{$prompt_line_fg}${prompt_head_start}${prompt_line}%f(%B%F{$prompt_distro_fg}${left_raw}%f%b)"
 
-  local right_raw="%n@%B%m%b"
-  local right_width=${#${(S%%)right_raw//(\%([KF1]|)\{*\}|\%[Bbkf])}}
+  local right_raw="%n@%m"
+  local right_width=$(prompt_subst_width "$right_raw")
   right_raw="%(!.%K{$prompt_root_red}.)%n%(!.%K.)@%B%m%b"  # kinda cheating here
   local right="(%F{$prompt_host_fg}${right_raw}%f)%F{$prompt_line_fg}${prompt_line}%f"
 
