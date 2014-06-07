@@ -21,10 +21,12 @@ prompt_enable_utf8() {
 }
 
 
+# Beginning of an arrow: \-
 prompt_start_input_line() {
   echo "%F{$prompt_line_fg}${prompt_arrow_start}${prompt_line}%f"
 }
 
+# Turns \- into |- on the previous line
 prompt_branch_prev_line() {
   # Not sure about this one, there are some extra quotes in adam2 for some reason
   echo "%{\e[A\r%}%F{$prompt_line_fg}$prompt_branch%f%{\e[B\r%}"
