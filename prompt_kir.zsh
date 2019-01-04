@@ -92,7 +92,7 @@ prompt_ps3() {
 }
 
 
-setopt PROMPT_SUBST PROMPT_CR PROMPT_PERCENT
+setopt PROMPT_SUBST PROMPT_CR PROMPT_SP PROMPT_PERCENT
 PS1=$'$(prompt_ps1_line1)\n$(prompt_ps1_line2)'
 RPS1="%(?..%B%F{red}<%?>%f%b)"
 PS2=$'$(prompt_ps2)'
